@@ -6,7 +6,7 @@
   </a>
   <h3>Octo Go</h3>
   <p>
-    Powerful router for Go
+    Simple router for Go
     <br />
     <br />
     <a href="https://github.com/4c65736975/octo-go/issues">Report Bug</a>
@@ -47,7 +47,7 @@
 
 ## About the project
 
-Octo Go is a lightweight, high-performance router for creating robust HTTP endpoints in Go. With support for middleware, parameter parsing, and route grouping, Octo Go offers unparalleled flexibility and scalability for your web applications. Backed by comprehensive documentation, Octo Go is the perfect choice for building powerful APIs in Go.
+Octo Go is a lightweight, high-performance router for creating robust HTTP endpoints in Go. It started its history as a router built entirely from scratch, but with the release of Go 1.22 Octo Go turned into a wrapper around the original mux, adding convenient creation of routes, middleware support and group routes. Octo Go is the perfect tool for simple creating powerful APIs in Go, staying as close to the original mux as possible, without unnecessary complexity.
 
 <p align="right">&#x2191 <a href="#top">back to top</a></p>
 
