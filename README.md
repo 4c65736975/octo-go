@@ -2,11 +2,11 @@
 <br/>
 <div align="center">
   <a href="https://github.com/4c65736975/PROJECT_NAME">
-    <img src="icon.png" alt="Logo" width="128" height="128">
+    <img src="https://github.com/4c65736975/octo-go/assets/107006334/9e36e10c-c35c-4fef-b079-6b15ef622c41" alt="Logo" width="128" height="128">
   </a>
-  <h3>PROJECT_NAME</h3>
+  <h3>Octo Go</h3>
   <p>
-    PROJECT_INFO
+    Powerful router for Go
     <br />
     <br />
     <a href="https://github.com/4c65736975/PROJECT_NAME/issues">Report Bug</a>
