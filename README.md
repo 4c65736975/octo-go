@@ -53,25 +53,76 @@ Octo Go is a lightweight, high-performance router for creating robust HTTP endpo
 
 ## Getting started
 
-PROJECT_STARTING
-<br/>
+```go
+func main() {
+  mux := router.NewRouter()
+
+  mux.GET("/user", userGetHandler)
+  mux.POST("/user", userPostHandler)
+
+  http.ListenAndServe("localhost:3000", mux)
+}
+```
 
 ### Prerequisites
 
-PROJECT_PREREQUISITES
+[Go 1.22](https://go.dev/dl/)
 
 ### Installation
 
-1. Clone the repo
 ```sh
-git clone https://github.com/4c65736975/octo-go
+go get -u github.com/4c65736975/octo-go
 ```
 
 <p align="right">&#x2191 <a href="#top">back to top</a></p>
 
 ## Usage
 
-PROJECT_USAGE
+### Routes
+
+```go
+mux.GET("/", getHandler)
+mux.PUT("/", putHandler)
+mux.POST("/", postHandler)
+mux.PATCH("/", patchHandler)
+mux.DELETE("/", deleteHandler)
+```
+
+### Group Routes
+
+```go
+mux.Group("/users", func(mux *router.Router) {
+  mux.GET("/", func(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintln(w, "List all users")
+  })
+  mux.GET("/{id}", func(w http.ResponseWriter, r *http.Request) {
+    id := r.PathValue("id")
+    fmt.Fprintf(w, "Get user with ID %s\n", id)
+  })
+  mux.POST("/", func(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintln(w, "Create a new user")
+  })
+  mux.PUT("/{id}", func(w http.ResponseWriter, r *http.Request) {
+    id := r.PathValue("id")
+    fmt.Fprintf(w, "Update user with ID %s\n", id)
+  })
+  mux.DELETE("/{id}", func(w http.ResponseWriter, r *http.Request) {
+    id := r.PathValue("id")
+    fmt.Fprintf(w, "Delete user with ID %s\n", id)
+  })
+})
+
+mux.Group("/products", func(mux *router.Router) {
+  mux.GET("/", getProductsHandler)
+  mux.GET("/{id}", getProductHandler)
+  mux.POST("/", createProductHandler)
+  mux.PUT("/{id}", updateProductHandler)
+  mux.DELETE("/{id}", deleteProductHandler)
+})
+```
+</br>
+
+### Middlewares
 
 <p align="right">&#x2191 <a href="#top">back to top</a></p>
 
