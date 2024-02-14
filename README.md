@@ -47,7 +47,7 @@
 
 ## About the project
 
-PROJECT_DESCRIPTION
+Octo Go is a lightweight, high-performance router for creating robust HTTP endpoints in Go. With support for middleware, parameter parsing, and route grouping, Octo Go offers unparalleled flexibility and scalability for your web applications. Backed by comprehensive documentation, Octo Go is the perfect choice for building powerful APIs in Go.
 
 <p align="right">&#x2191 <a href="#top">back to top</a></p>
 
