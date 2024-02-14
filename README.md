@@ -123,7 +123,7 @@ mux.Group("/products", func(mux *router.Router) {
 
 ### Middlewares
 
-Example Middleware
+#### Example Middleware
 
 ```go
 func exampleMiddleware(w http.ResponseWriter, req *http.Request, next func()) {
@@ -133,7 +133,7 @@ func exampleMiddleware(w http.ResponseWriter, req *http.Request, next func()) {
 ```
 If the next() function is not executed in the middleware, the request ends with this middleware, if it is executed, the next middleware or final handler is executed.
 
-Global Middlewares
+#### Global Middlewares
 ```go
 mux.Use(loggingMiddleware)
 mux.Use(ipMiddleware)
@@ -145,12 +145,12 @@ mux.Use(loggingMiddleware)
 mux.GET("/products/{id}", productHandler) // using loggingMiddleware
 mux.DELETE("/products/{id}", deleteProductHandler) // using loggingMiddleware
 ```
-Route Middlewares
+#### Route Middlewares
 ```go
 mux.GET("/profile", profileHandler, authMiddleware)
 mux.GET("/profile/settings", settingsHandler, authMiddleware, settingsMiddleware, usageMiddleware)
 ```
-Group Middlewares
+#### Group Middlewares
 ```go
 mux.Group("/users", func(mux *router.Router) {
   mux.GET("/", usersHandler)
