@@ -61,6 +61,26 @@ func main() {
   mux.POST("/user", userPostHandler)
 
   http.ListenAndServe("localhost:3000", mux)
+
+  // Registering route
+  METHOD: GET, POST, PUT, PATCH, DELETE
+  PATH: Route path e.g "/", "/users" or with parameters "/users/{id}", "/users/{id}/{group}"
+  HANDLER: func(w http.ResponseWriter, r *http.Request)
+  MIDDLEWARES: func(http.ResponseWriter, *http.Request, func()) you can add as many as you want
+
+  mux.METHOD(PATH, HANDLER, MIDDLEWARES)
+
+  // Registering global middleware
+  MIDDLEWARE: func(http.ResponseWriter, *http.Request, func())
+
+  mux.Use(MIDDLEWARE)
+
+  // Registering group of routes
+  BASE_PATH: default path for this group e.g "/products", all methods registered inside starts with this path
+
+  mux.Group(BASE_PATH, func(mux *router.Router) {
+    mux.METHOD(PATH, HANDLER, MIDDLEWARES)
+  }, MIDDLEWARES)
 }
 ```
 
