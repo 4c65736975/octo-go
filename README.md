@@ -158,7 +158,93 @@ mux.Group("/users", func(mux *router.Router) {
 }, telemetryMiddleware)
 ```
 
-Middlewares are executed in the order in which they are registered.
+Middlewares are executed in the order in which they are registered, unless the next() function is called before the middleware code as in the case below
+
+```go
+func localMiddleware(w http.ResponseWriter, req *http.Request, next func()) {
+  fmt.Println("Local middleware 1")
+  next()
+}
+
+func localMiddleware2(w http.ResponseWriter, req *http.Request, next func()) {
+  next()
+  fmt.Println("Local middleware 2")
+}
+
+func localMiddleware3(w http.ResponseWriter, req *http.Request, next func()) {
+  fmt.Println("Local middleware 3")
+  next()
+}
+
+func localMiddleware4(w http.ResponseWriter, req *http.Request, next func()) {
+  fmt.Println("Local middleware 4")
+  next()
+}
+
+Console Output:
+Local middleware 1
+Local middleware 3
+Local middleware 4
+Local middleware 2
+```
+
+### Parameters
+
+With Go 1.22 we can register dynamic routes using the built-in mux. We can get the parameter in the handler or middleware as shown below.
+
+```go
+mux.GET("/users/{id}/products/{category}", func(w http.ResponseWriter, r *http.Request) {
+  fmt.Println("Handler")
+  fmt.Println(req.PathValue("id"))
+  fmt.Println(req.PathValue("category"))
+}, testMiddleware)
+
+func testMiddleware(w http.ResponseWriter, req *http.Request, next func()) {
+  fmt.Println("Middleware")
+  fmt.Println(req.PathValue("id"))
+  fmt.Println(req.PathValue("category"))
+  next()
+}
+
+Requested route: /users/1/products/human
+
+Console Output:
+Middleware
+1
+human
+Handler
+1
+human
+```
+
+### Query
+
+We can access the query value as with the default mux and similarly to parameters in the handler and middleware.
+
+```go
+mux.GET("/users/{id}/products/{category}", func(w http.ResponseWriter, r *http.Request) {
+  fmt.Println("Handler")
+  fmt.Println(req.URL.Query())
+  fmt.Println(req.URL.Query().Get("maxHeight"))
+}, testMiddleware)
+
+func testMiddleware(w http.ResponseWriter, req *http.Request, next func()) {
+  fmt.Println("Middleware")
+  fmt.Println(req.URL.Query())
+  fmt.Println(req.URL.Query().Get("maxHeight"))
+  next()
+}
+
+Requested route: /users/1/products/human?sort=asc&maxHeight=180
+
+Console Output:
+Middleware
+map[maxHeight:[180] sort:[asc]]
+180
+Handler
+map[maxHeight:[180] sort:[asc]]
+180
+```
 
 <p align="right">&#x2191 <a href="#top">back to top</a></p>
 
