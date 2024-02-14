@@ -120,9 +120,45 @@ mux.Group("/products", func(mux *router.Router) {
   mux.DELETE("/{id}", deleteProductHandler)
 })
 ```
-</br>
 
 ### Middlewares
+
+Example Middleware
+
+```go
+func exampleMiddleware(w http.ResponseWriter, req *http.Request, next func()) {
+  fmt.Fprintln(w, "Example middleware")
+  next()
+}
+```
+If the next() function is not executed in the middleware, the request ends with this middleware, if it is executed, the next middleware or final handler is executed.
+
+Global Middlewares
+```go
+mux.Use(loggingMiddleware)
+mux.Use(ipMiddleware)
+```
+Global middleware works on every registered route after adding global middleware, all routes added earlier are ignored
+```go
+mux.GET("/products", productsHandler) // not using loggingMiddleware
+mux.Use(loggingMiddleware)
+mux.GET("/products/{id}", productHandler) // using loggingMiddleware
+mux.DELETE("/products/{id}", deleteProductHandler) // using loggingMiddleware
+```
+Route Middlewares
+```go
+mux.GET("/profile", profileHandler, authMiddleware)
+mux.GET("/profile/settings", settingsHandler, authMiddleware, settingsMiddleware, usageMiddleware)
+```
+Group Middlewares
+```go
+mux.Group("/users", func(mux *router.Router) {
+  mux.GET("/", usersHandler)
+  mux.DELETE("/{id}", deleteUserHandler, authMiddleware)
+}, telemetryMiddleware)
+```
+
+Middlewares are executed in the order in which they are registered.
 
 <p align="right">&#x2191 <a href="#top">back to top</a></p>
 
