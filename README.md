@@ -85,6 +85,6 @@ Distributed under the GPL-3.0 license. See [LICENSE](https://github.com/4c657369
 
 * [Choose an Open Source License](https://choosealicense.com)
 * [Best README Template](https://github.com/othneildrew/Best-README-Template)
-* [Octopus icons created by iconmama - Flaticon](https://www.flaticon.com/free-icons/octopus" title="octopus icons)
+* [Octopus icons created by iconmama - Flaticon](https://www.flaticon.com/free-icons/octopus)
 
 <p align="right">&#x2191 <a href="#top">back to top</a></p>
