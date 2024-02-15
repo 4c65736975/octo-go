@@ -1,5 +1,5 @@
 // @author: 4c65736975, All Rights Reserved
-// @version: 1.0.0.0, 14|02|2024
+// @version: 1.0.1, 14|02|2024
 // @filename: router.go
 
 package router
