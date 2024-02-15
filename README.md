@@ -239,7 +239,7 @@ human
 
 ### Query
 
-We can access the query value as with the default mux and similarly to parameters in the handler and middleware.
+We can access the query value as with the default mux and similarly to parameters, in the handler and middleware.
 
 ```go
 mux.GET("/users/{id}/products/{category}", func(w http.ResponseWriter, r *http.Request) {
