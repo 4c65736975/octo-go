@@ -143,8 +143,6 @@ mux.Group("/products", func(mux *router.Router) {
 
 ### Middlewares
 
-#### Example Middleware
-
 ```go
 func exampleMiddleware(w http.ResponseWriter, req *http.Request, next func()) {
   fmt.Fprintln(w, "Example middleware")
