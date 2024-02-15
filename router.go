@@ -36,10 +36,20 @@ func (r *Router) Use(middleware Middleware) {
 
 // Creates group of endpoints with specified base path and middlewares
 func (r *Router) Group(path string, route func(router *Router), middlewares ...Middleware) {
-  r.groupPrefix = path
+  previousPrefix := r.groupPrefix
+
+  defer func() {
+    r.groupPrefix = previousPrefix
+  }()
+
+  if r.groupPrefix == "" {
+    r.groupPrefix = path
+  } else {
+    r.groupPrefix = r.groupPrefix + path
+  }
+
   r.groupMiddlewares = middlewares
   route(r)
-  r.groupPrefix = ""
   r.groupMiddlewares = nil
 }
 
