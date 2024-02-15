@@ -35,6 +35,34 @@
     </li>
     <li>
       <a href="#usage">Usage</a>
+      <ul>
+        <li>
+          <a href="#routes">Routes</a>
+        </li>
+        <li>
+          <a href="#group-routes">Group Routes</a>
+        </li>
+        <li>
+          <a href="#middlewares">Middlewares</a>
+          <ul>
+            <li>
+              <a href="#global-middlewares">Global Middlewares</a>
+            </li>
+            <li>
+              <a href="#route-middlewares">Route Middlewares</a>
+            </li>
+            <li>
+              <a href="#group-middlewares">Group Middlewares</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#parameters">Parameters</a>
+        </li>
+        <li>
+          <a href="#query">Query</a>
+        </li>
+      </ul>
     </li>
     <li>
       <a href="#license">License</a>
@@ -179,6 +207,8 @@ mux.Group("/users", func(mux *router.Router) {
 Middlewares are executed in the order in which they are registered, unless the next() function is called before the middleware code as in the case below
 
 ```go
+mux.GET("/", routeHandler, localMiddleware, localMiddleware2, localMiddleware3, localMiddleware4)
+
 func localMiddleware(w http.ResponseWriter, req *http.Request, next func()) {
   fmt.Println("Local middleware 1")
   next()

@@ -7,13 +7,13 @@ assignees:
 body:
 - type: markdown
   attributes:
-    value: Please make sure to [search for existing issues](https://github.com/4c65736975/PROJECT_NAME/issues) before filing a new one!
+    value: Please make sure to [search for existing issues](https://github.com/4c65736975/octo-go/issues) before filing a new one!
 
 - type: dropdown
   id: version
   attributes:
     label: Version
-    description: What version of the PROJECT_NAME does the problem apply to?
+    description: What version of the Octo Go does the problem apply to?
     options:
       - 1.0.0.0
     default: 0
@@ -23,7 +23,7 @@ body:
 - type: textarea
   attributes:
     label: 👣 Steps to reproduce
-    description: I strongly suggest including screenshots.
+    description: I strongly suggest including screenshots, console output.
     placeholder: Having detailed steps helps me reproduce the bug. 
   validations:
     required: true
